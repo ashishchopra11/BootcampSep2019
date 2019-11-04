@@ -22,6 +22,7 @@ $(document).ready(function () {
             fname = true
             var regex = /^[a-zA-Z\s]+$/;
             if (regex.test(fname) === false) {
+                $("#firstName").innerHTML = ""
                 alert("Please enter a valid first name");
             }
             else {
@@ -41,6 +42,28 @@ $(document).ready(function () {
                 lname = true;
             }
         }
+        if(phoneNumber == "") {
+            alert( "Please enter your mobile number");
+        } else {
+          
+            var regex = /^[1-9]\d{9}$/;
+            if(regex.test(phoneNumber) === false) {
+                alert("Please enter a valid 10 digit mobile number");
+                
+            } else{
+                phoneNumber= true;
+            }
+        }
+
+        if((fname && lname && email && password && phoneNumber) == true){
+            let signUpData = true
+            alert("Your SignUp has been successful")
+            $(location).attr('href', '../views/login.html')
+            }
+            else{
+                signUpData = false
+                alert("Your data is not valid")
+            }
         $.ajax("http://localhost:3000/signUp", {
             type: "POST",
             dataType: "json",
