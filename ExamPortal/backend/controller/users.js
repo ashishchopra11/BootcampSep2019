@@ -8,7 +8,6 @@ const testInfo = require('./testDetails')
 const userRecord = async(req, res) => {
     let response
     var hash = bcryptjs.hashSync(req.body.password, 8)
-    console.log(hash)
     req.body.password = hash
     response = await userController.userRecord(req, res)
     return response
